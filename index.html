@@ -34,7 +34,20 @@
 
         function fnFindKey(data){
             for (key in data.data){
-                $("#searchBlock").html(data.data[key].blockNum);
+                setTimeout(fnFindBlock(data, key), 1000)    
+            }
+           
+            if (stop == false){
+                getBlockData(data.next);
+            }
+        }
+       
+        function fnStop(){
+            stop = true;
+        }
+
+        function fnFindBlock(data, key){
+        $("#searchBlock").html(data.data[key].blockNum);
                 if(data.data[key].signerPubKey == signerPubKey1){
                     signerCnt1++;                    
                     $("#sp_signerCnt1").text(signerCnt1);
@@ -49,16 +62,7 @@
                     signerCnt3++;                    
                     $("#sp_signerCnt3").text(signerCnt3);
                 }
-            }
-           
-            if (stop == false){
-                getBlockData(data.next);
-            }
-        }
-       
-        function fnStop(){
-            stop = true;
-        }
+         }
 
 	</script>    
 </head>
