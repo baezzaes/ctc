@@ -34,7 +34,7 @@
 
         function fnFindKey(data){
             for (key in data.data){
-                $("#searchBlock").html(data.data[key].blockNum);
+                $("#searchBlock1").html(data.data[key].blockNum);
                 if(data.data[key].signerPubKey == signerPubKey1){
                     signerCnt1++;                    
                     $("#sp_signerCnt1").text(signerCnt1);
@@ -50,6 +50,8 @@
                     $("#sp_signerCnt3").text(signerCnt3);
                 }
             }
+         
+            $("#searchBlock2").html(data.data[key].blockNum);
            
             if (stop == false){
                 getBlockData(data.next);
@@ -63,7 +65,7 @@
 	</script>    
 </head>
 <body>
-    <div>검색중인 블록no : <span id="searchBlock"></span></div>
+    <div>검색중인 블록no : <span id="searchBlock1"></span>~<span id="searchBlock2"></span></div>
     <div><span>signerPubKey : 03974...55f3d</span><br/>블록수 : <span id="sp_signerCnt1">0</span>건</div>
     <div><span>signerPubKey : 02803...1416f</span><br/>블록수 : <span id="sp_signerCnt2">0</span>건</div>
     <div><span>signerPubKey : 03083...30c82</span><br/>블록수 : <span id="sp_signerCnt3">0</span>건</div>
