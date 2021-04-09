@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+    <script src="/js/jquery-2.1.4.min.js"></script>
+	<script>   
+        var stop = false;            
+        var signerPubKey1 = "03974ec2c076e8013eff1fd28bb448059b8c5c041ba22bb2c22f0ecebc2fd55f3d";
+        var signerCnt1 = 0;
+
+        var signerPubKey2 = "02803d3e46398a5b511ff5d1f0937890fb72f8500dbbddb3cae8bb11caa0e1416f";
+        var signerCnt2 = 0;
+
+        var signerPubKey3 = "03083fb367dd76c21c58c0967d628630a8d6d05e42d2a2cd392254268d2ff30c82";
+        var signerCnt3 = 0;
+    
+        $(function(){
+            getBlockData("");
+        })
+
+        function getBlockData(url){
+            if (url == "")
+                url = "https://api.creditcoinexplorer.com/api/blocks"            
+            $.ajax({
+                url : url,
+                dataType : "json",
+                success:function(data){
+                    fnFindKey(data);
+                }
+            })       
+        } 
+
+        function fnFindKey(data){
+            for (key in data.data){
+                if(data.data[key].signerPubKey == signerPubKey1){
+                    signerCnt1++;                    
+                    $("#sp_signerCnt1").text(signerCnt1);
+                }
+
+                if(data.data[key].signerPubKey == signerPubKey2){
+                    signerCnt2++;                    
+                    $("#sp_signerCnt2").text(signerCnt2);
+                }
+
+                if(data.data[key].signerPubKey == signerPubKey3){
+                    signerCnt3++;                    
+                    $("#sp_signerCnt3").text(signerCnt3);
+                }
+            }
+           
+            if (stop == false){
+                getBlockData(data.next);
+            }
+        }
+       
+        function fnStop(){
+            stop = true;
+        }
+
+	</script>    
+</head>
+<body>
+    <div><span>signerPubKey : 03974...55f3d</span><br/>블록수 : <span id="sp_signerCnt1">0</span>건</div>
+    <div><span>signerPubKey : 02803...1416f</span><br/>블록수 : <span id="sp_signerCnt2">0</span>건</div>
+    <div><span>signerPubKey : 03083...30c82</span><br/>블록수 : <span id="sp_signerCnt3">0</span>건</div>
+    <button onclick="fnStop()">중지</button>
+</body>
+</html>
