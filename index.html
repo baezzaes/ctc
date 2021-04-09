@@ -34,6 +34,7 @@
 
         function fnFindKey(data){
             for (key in data.data){
+                $("#searchBlock").html(data.data[key].blockNum);
                 if(data.data[key].signerPubKey == signerPubKey1){
                     signerCnt1++;                    
                     $("#sp_signerCnt1").text(signerCnt1);
@@ -62,6 +63,7 @@
 	</script>    
 </head>
 <body>
+    <div id="searchBlock"></div>
     <div><span>signerPubKey : 03974...55f3d</span><br/>블록수 : <span id="sp_signerCnt1">0</span>건</div>
     <div><span>signerPubKey : 02803...1416f</span><br/>블록수 : <span id="sp_signerCnt2">0</span>건</div>
     <div><span>signerPubKey : 03083...30c82</span><br/>블록수 : <span id="sp_signerCnt3">0</span>건</div>
