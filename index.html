@@ -47,6 +47,7 @@
         }
 
         function fnFindBlock(data, key){
+        alert(key);
         $("#searchBlock").html(data.data[key].blockNum);
                 if(data.data[key].signerPubKey == signerPubKey1){
                     signerCnt1++;                    
