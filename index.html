@@ -53,7 +53,7 @@
                 if(data.data[key].signerPubKey == signerPubKey2){
                     signerCnt2++;
                     $("#sp_signerCnt2").text(signerCnt2);
-                    if(signerCnt1 == 2){
+                    if(signerCnt1 == 1){
                         $("#sp_lastBlockNo2").text(data.data[key].blockNum);
                         $("#sp_lastBlockTimeStamp2").text(data.data[key].timestamp);
                     }
