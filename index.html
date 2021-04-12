@@ -6,7 +6,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script>
         var stop = false;
-        var blockRepeat
+        var blockRepeat;
+        var isLastBlock = false;
+
         var signerPubKey1 = "03974ec2c076e8013eff1fd28bb448059b8c5c041ba22bb2c22f0ecebc2fd55f3d";
         var signerCnt1 = 0;
 
@@ -39,6 +41,10 @@
             for (key in data.data){
                 if (i == 1 && stop == false){
                     fnShowBlockNum(data.data[key].blockNum);
+                    if(isLastBlock == false){
+                        $("#lastBlock").text(data.data[key].blockNum);
+                        isLastBlock = true;
+                    }
                 }
 
                 if(data.data[key].signerPubKey == signerPubKey1){
@@ -96,8 +102,8 @@
 </head>
 <body>
     <div>
-        <div>마지막 블록No : <span id="lastBlock">789955</span></div>
-        <div>검색중인 블록No : <span id="searchBlock">789900</span>&nbsp;&nbsp;&nbsp;<button onclick="fnStop()">중지</button></div>
+        <div>마지막 블록No : <span id="lastBlock"></span></div>
+        <div>검색중인 블록No : <span id="searchBlock"></span>&nbsp;&nbsp;&nbsp;<button onclick="fnStop()">중지</button></div>
     </div>
     <div style="margin-top:10px">
         <table>
