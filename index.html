@@ -44,16 +44,28 @@
                 if(data.data[key].signerPubKey == signerPubKey1){
                     signerCnt1++;
                     $("#sp_signerCnt1").text(signerCnt1);
+                    if(signerCnt1 == 1){
+                        $("#sp_lastBlockNo1").text(data.data[key].blockNum);
+                        $("#sp_lastBlockTimeStamp1").text(data.data[key].timestamp);
+                    }
                 }
 
                 if(data.data[key].signerPubKey == signerPubKey2){
                     signerCnt2++;
                     $("#sp_signerCnt2").text(signerCnt2);
+                    if(signerCnt1 == 2){
+                        $("#sp_lastBlockNo2").text(data.data[key].blockNum);
+                        $("#sp_lastBlockTimeStamp2").text(data.data[key].timestamp);
+                    }
                 }
 
                 if(data.data[key].signerPubKey == signerPubKey3){
                     signerCnt3++;
                     $("#sp_signerCnt3").text(signerCnt3);
+                    if(signerCnt3 == 1){
+                        $("#sp_lastBlockNo3").text(data.data[key].blockNum);
+                        $("#sp_lastBlockTimeStamp3").text(data.data[key].timestamp);
+                    }
                 }
 
                 i++;
@@ -66,23 +78,84 @@
 
         function fnStop(){
             stop = true;
-            //clearInterval(blockRepeat);
+            clearInterval(blockRepeat);
         }
 
         function fnShowBlockNum(blockNum){
             blockRepeat = setInterval(function(){
-                $("#searchBlock").html(blockNum);
+                $("#searchBlock").text(blockNum);
                 blockNum--;
             }, 10)
         }
-
 	</script>
+    <style>
+        table{border:2px solid; width:100%; text-align:center; border-collapse: collapse;}
+        th{background-color:#E0E0E0; border:1px solid; border-collapse: collapse;}
+        td{border:1px solid}
+    </style>
 </head>
 <body>
-    <div>검색중인 블록no : <span id="searchBlock"></span></div>
-    <div><span>signerPubKey : 03974...55f3d</span><br/>블록수 : <span id="sp_signerCnt1">0</span>건</div>
-    <div><span>signerPubKey : 02803...1416f</span><br/>블록수 : <span id="sp_signerCnt2">0</span>건</div>
-    <div><span>signerPubKey : 03083...30c82</span><br/>블록수 : <span id="sp_signerCnt3">0</span>건</div>
-    <button onclick="fnStop()">중지</button>
+    <div>
+        <div>마지막 블록No : <span id="lastBlock">789955</span></div>
+        <div>검색중인 블록No : <span id="searchBlock">789900</span>&nbsp;&nbsp;&nbsp;<button onclick="fnStop()">중지</button></div>
+    </div>
+    <div style="margin-top:10px">
+        <table>
+            <tr>
+                <th>signerPubKey</th>
+                <td>03974.....55f3d</td>
+            </tr>
+            <tr>
+                <th>전체블록수</th>
+                <td><span id="sp_signerCnt1">0</span>건</td>
+            </tr>
+            <tr>
+                <th>최근블록No</th>
+                <td><span id="sp_lastBlockNo1"></span></td>
+            </tr>
+            <tr>
+                <th>최근블록 timestamp</th>
+                <td><span id="sp_lastBlockTimeStamp1"></span></td>
+            </tr>
+        </table>
+        <br/>
+        <table>
+            <tr>
+                <th>signerPubKey</th>
+                <td>02803.....1416f</td>
+            </tr>
+            <tr>
+                <th>전체블록수</th>
+                <td><span id="sp_signerCnt2">0</span>건</td>
+            </tr>
+            <tr>
+                <th>최근블록No</th>
+                <td><span id="sp_lastBlockNo2"></span></td>
+            </tr>
+            <tr>
+                <th>최근블록 timestamp</th>
+                <td><span id="sp_lastBlockTimeStamp2"></span></td>
+            </tr>
+        </table>
+        <br/>
+        <table>
+            <tr>
+                <th>signerPubKey</th>
+                <td>03083.....30c82</td>
+            </tr>
+            <tr>
+                <th>전체블록수</th>
+                <td><span id="sp_signerCnt3">0</span>건</td>
+            </tr>
+            <tr>
+                <th>최근블록No</th>
+                <td><span id="sp_lastBlockNo3"></span></td>
+            </tr>
+            <tr>
+                <th>최근블록 timestamp</th>
+                <td><span id="sp_lastBlockTimeStamp3"></span></td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>
