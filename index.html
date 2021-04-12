@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 	<script>
         var stop = false;
         var blockRepeat;
@@ -52,7 +53,9 @@
                     $("#sp_signerCnt1").text(signerCnt1);
                     if(signerCnt1 == 1){
                         $("#sp_lastBlockNo1").text(data.data[key].blockNum);
-                        $("#sp_lastBlockTimeStamp1").text(data.data[key].timestamp);
+                        var dt = new Date(data.data[key].timestamp)
+                        dt.setHours(dt.getHours()+9); // 한국시간 변환
+                        $("#sp_lastBlockTimeStamp1").text(moment(dt).format('YYYY-MM-DD HH:mm:ss'));
                     }
                 }
 
@@ -61,7 +64,9 @@
                     $("#sp_signerCnt2").text(signerCnt2);
                     if(signerCnt2 == 1){
                         $("#sp_lastBlockNo2").text(data.data[key].blockNum);
-                        $("#sp_lastBlockTimeStamp2").text(data.data[key].timestamp);
+                        var dt = new Date(data.data[key].timestamp)
+                        dt.setHours(dt.getHours()+9); // 한국시간 변환
+                        $("#sp_lastBlockTimeStamp2").text(moment(dt).format('YYYY-MM-DD HH:mm:ss'));
                     }
                 }
 
@@ -70,7 +75,9 @@
                     $("#sp_signerCnt3").text(signerCnt3);
                     if(signerCnt3 == 1){
                         $("#sp_lastBlockNo3").text(data.data[key].blockNum);
-                        $("#sp_lastBlockTimeStamp3").text(data.data[key].timestamp);
+                        var dt = new Date(data.data[key].timestamp)
+                        dt.setHours(dt.getHours()+9); // 한국시간 변환
+                        $("#sp_lastBlockTimeStamp3").text(moment(dt).format('YYYY-MM-DD HH:mm:ss'));
                     }
                 }
 
@@ -108,8 +115,8 @@
     <div style="margin-top:10px">
         <table>
             <tr>
-                <th>signerPubKey</th>
-                <td>03974.....55f3d</td>
+                <th width="50%">signerPubKey</th>
+                <td width="50%">03974.....55f3d</td>
             </tr>
             <tr>
                 <th>전체블록수</th>
@@ -127,8 +134,8 @@
         <br/>
         <table>
             <tr>
-                <th>signerPubKey</th>
-                <td>02803.....1416f</td>
+                <th width="50%">signerPubKey</th>
+                <td width="50%">02803.....1416f</td>
             </tr>
             <tr>
                 <th>전체블록수</th>
@@ -146,8 +153,8 @@
         <br/>
         <table>
             <tr>
-                <th>signerPubKey</th>
-                <td>03083.....30c82</td>
+                <th width="50%">signerPubKey</th>
+                <td width="50%">03083.....30c82</td>
             </tr>
             <tr>
                 <th>전체블록수</th>
