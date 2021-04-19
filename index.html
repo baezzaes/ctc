@@ -48,13 +48,15 @@
                     }
                 }
 
+                var dt = new Date(data.data[key].timestamp)
+                dt.setHours(dt.getHours()+9); // 한국시간 변환
+
                 if(data.data[key].signerPubKey == signerPubKey1){
                     signerCnt1++;
                     $("#sp_signerCnt1").text(signerCnt1);
+                    $("#td_blockList1").append("<b>" + data.data[key].blockNum + "</b><br/>" + moment(dt).format('YYYY-MM-DD HH:mm:ss') + "<br/>");
                     if(signerCnt1 == 1){
                         $("#sp_lastBlockNo1").text(data.data[key].blockNum);
-                        var dt = new Date(data.data[key].timestamp)
-                        dt.setHours(dt.getHours()+9); // 한국시간 변환
                         $("#sp_lastBlockTimeStamp1").text(moment(dt).format('YYYY-MM-DD HH:mm:ss'));
                     }
                 }
@@ -62,10 +64,9 @@
                 if(data.data[key].signerPubKey == signerPubKey2){
                     signerCnt2++;
                     $("#sp_signerCnt2").text(signerCnt2);
+                    $("#td_blockList2").append("<b>" + data.data[key].blockNum + "</b><br/>" + moment(dt).format('YYYY-MM-DD HH:mm:ss') + "<br/>");
                     if(signerCnt2 == 1){
                         $("#sp_lastBlockNo2").text(data.data[key].blockNum);
-                        var dt = new Date(data.data[key].timestamp)
-                        dt.setHours(dt.getHours()+9); // 한국시간 변환
                         $("#sp_lastBlockTimeStamp2").text(moment(dt).format('YYYY-MM-DD HH:mm:ss'));
                     }
                 }
@@ -73,10 +74,9 @@
                 if(data.data[key].signerPubKey == signerPubKey3){
                     signerCnt3++;
                     $("#sp_signerCnt3").text(signerCnt3);
+                    $("#td_blockList3").append("<b>" + data.data[key].blockNum + "</b><br/>" + moment(dt).format('YYYY-MM-DD HH:mm:ss') + "<br/>");
                     if(signerCnt3 == 1){
                         $("#sp_lastBlockNo3").text(data.data[key].blockNum);
-                        var dt = new Date(data.data[key].timestamp)
-                        dt.setHours(dt.getHours()+9); // 한국시간 변환
                         $("#sp_lastBlockTimeStamp3").text(moment(dt).format('YYYY-MM-DD HH:mm:ss'));
                     }
                 }
@@ -167,6 +167,21 @@
             <tr>
                 <th>최근블록 timestamp</th>
                 <td><span id="sp_lastBlockTimeStamp3"></span></td>
+            </tr>
+        </table>
+    </div>
+    <br/>
+    <div>
+        <table>
+            <tr>
+                <th>03974</th>
+                <th>02803</th>
+                <th>03083</th>
+            </tr>
+            <tr style="vertical-align: top; font-size:8pt">
+                <td id="td_blockList1"></td>
+                <td id="td_blockList2"></td>
+                <td id="td_blockList3"></td>
             </tr>
         </table>
     </div>
