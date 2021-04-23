@@ -29,6 +29,7 @@
         })
 
         function getMyPeers(ip){
+            alert(ip);
             $.ajax({
                 url : "http://" + ip + ":8008/peers",
                 dataType : "json",
