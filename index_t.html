@@ -64,13 +64,13 @@
 
         function fnShowPrice(data){
             price = data["creditcoin-2"].krw;
-            $("#price").text("￦" + price);
+            $("#price").text("￦" + price.toLocaleString());
         }
 
         function fnShowCTC(data, idx){
             amount = data.amount.substr(0, data.amount.length - 18);
             $("#sp_ctc"+idx).text(amount.toLocaleString() + "CTC");
-            $("#sp_krw"+idx).text((amount * price).toLocaleString());
+            $("#sp_krw"+idx).text("￦" + (amount * price).toLocaleString());
         }
 
         function getBlockData(url){
@@ -182,7 +182,11 @@
                 <td><span id="sp_lastBlockTimeStamp1"></span></td>
             </tr>
             <tr>
+                <th>CTC 합계</th>
                 <td><span id="sp_ctc1"></span></td>
+            </tr>
+            <tr>
+                <th>현재시세</th>
                 <td><span id="sp_krw1"></span></td>
             </tr>
         </table>
@@ -205,7 +209,11 @@
                 <td><span id="sp_lastBlockTimeStamp2"></span></td>
             </tr>
             <tr>
+                <th>CTC 합계</th>
                 <td><span id="sp_ctc2"></span></td>
+            </tr>
+            <tr>
+                <th>현재시세</th>
                 <td><span id="sp_krw2"></span></td>
             </tr>
         </table>
@@ -228,7 +236,11 @@
                 <td><span id="sp_lastBlockTimeStamp3"></span></td>
             </tr>
             <tr>
+                <th>CTC 합계</th>
                 <td><span id="sp_ctc3"></span></td>
+            </tr>
+            <tr>
+                <th>현재시세</th>
                 <td><span id="sp_krw3"></span></td>
             </tr>
         </table>
