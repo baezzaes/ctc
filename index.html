@@ -9,19 +9,69 @@
         var stop = false;
         var blockRepeat;
         var isLastBlock = false;
+        var price;
 
         var signerPubKey1 = "03974ec2c076e8013eff1fd28bb448059b8c5c041ba22bb2c22f0ecebc2fd55f3d";
+        var sighash1 = "e70a210479d28deb3aed81a9e7fce8b67a4fe4bafbce6f46b4d50c7a35e5";
         var signerCnt1 = 0;
 
         var signerPubKey2 = "02803d3e46398a5b511ff5d1f0937890fb72f8500dbbddb3cae8bb11caa0e1416f";
         var signerCnt2 = 0;
+        var sighash2 = "c9be9276a685084f0b4cd4964a34984b5a20504eaa9131661d8dfab9e52b";
 
         var signerPubKey3 = "03083fb367dd76c21c58c0967d628630a8d6d05e42d2a2cd392254268d2ff30c82";
         var signerCnt3 = 0;
+        var sighash3 = "2df04170229fd9625d970d690a94f6c21846011e45cfd06e0e078f28416b";
 
         $(function(){
+            getCTCInfo();
             getBlockData("");
         })
+
+        function getCTCInfo(){
+            $.ajax({
+                url : "https://api.coingecko.com/api/v3/simple/price?ids=creditcoin-2&vs_currencies=krw",
+                dataType : "json",
+                success:function(data){
+                    fnShowPrice(data);
+                }
+            })
+
+            $.ajax({
+                url : "https://api.creditcoin.org/api/Addresses/" + sighash1,
+                dataType : "json",
+                success:function(data){
+                    fnShowCTC(data, 1);
+                }
+            })
+
+            $.ajax({
+                url : "https://api.creditcoin.org/api/Addresses/" + sighash2,
+                dataType : "json",
+                success:function(data){
+                    fnShowCTC(data, 2);
+                }
+            })
+
+            $.ajax({
+                url : "https://api.creditcoin.org/api/Addresses/" + sighash3,
+                dataType : "json",
+                success:function(data){
+                    fnShowCTC(data, 3);
+                }
+            })
+        }
+
+        function fnShowPrice(data){
+            price = data["creditcoin-2"].krw;
+            $("#price").text("￦" + price.toLocaleString());
+        }
+
+        function fnShowCTC(data, idx){
+            amount = data.amount.substr(0, data.amount.length - 18);
+            $("#sp_ctc"+idx).text(parseInt(amount).toLocaleString() + "CTC");
+            $("#sp_krw"+idx).text("￦" + (Math.round(parseInt(amount * price))).toLocaleString());
+        }
 
         function getBlockData(url){
             if (url == "")
@@ -111,6 +161,7 @@
     <div>
         <div>마지막 블록No : <span id="lastBlock"></span></div>
         <div>검색중인 블록No : <span id="searchBlock"></span>&nbsp;&nbsp;&nbsp;<button onclick="fnStop()">중지</button></div>
+        <div>CTC Price : <span id="price"></span></div>
     </div>
     <div style="margin-top:10px">
         <table>
@@ -129,6 +180,14 @@
             <tr>
                 <th>최근블록 timestamp</th>
                 <td><span id="sp_lastBlockTimeStamp1"></span></td>
+            </tr>
+            <tr>
+                <th>CTC 합계</th>
+                <td><span id="sp_ctc1"></span></td>
+            </tr>
+            <tr>
+                <th>현재시세</th>
+                <td><span id="sp_krw1"></span></td>
             </tr>
         </table>
         <br/>
@@ -149,6 +208,14 @@
                 <th>최근블록 timestamp</th>
                 <td><span id="sp_lastBlockTimeStamp2"></span></td>
             </tr>
+            <tr>
+                <th>CTC 합계</th>
+                <td><span id="sp_ctc2"></span></td>
+            </tr>
+            <tr>
+                <th>현재시세</th>
+                <td><span id="sp_krw2"></span></td>
+            </tr>
         </table>
         <br/>
         <table>
@@ -167,6 +234,14 @@
             <tr>
                 <th>최근블록 timestamp</th>
                 <td><span id="sp_lastBlockTimeStamp3"></span></td>
+            </tr>
+            <tr>
+                <th>CTC 합계</th>
+                <td><span id="sp_ctc3"></span></td>
+            </tr>
+            <tr>
+                <th>현재시세</th>
+                <td><span id="sp_krw3"></span></td>
             </tr>
         </table>
     </div>
