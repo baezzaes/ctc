@@ -68,7 +68,7 @@
         }
 
         function fnShowCTC(data, idx){
-            amount = substr(0, data.amount.length - 18);
+            amount = amount.substr(0, data.amount.length - 18);
             $("#sp_ctc"+idx).text(amount);
             $("#sp_krw"+idx).text(amount * price);
         }
