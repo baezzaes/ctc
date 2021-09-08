@@ -17,9 +17,11 @@
 
         var signerPubKey2 = "02803d3e46398a5b511ff5d1f0937890fb72f8500dbbddb3cae8bb11caa0e1416f";
         var signerCnt2 = 0;
+        var sighash2 = "c9be9276a685084f0b4cd4964a34984b5a20504eaa9131661d8dfab9e52b";
 
         var signerPubKey3 = "03083fb367dd76c21c58c0967d628630a8d6d05e42d2a2cd392254268d2ff30c82";
         var signerCnt3 = 0;
+        var sighash3 = "2df04170229fd9625d970d690a94f6c21846011e45cfd06e0e078f28416b";
 
         $(function(){
             getCTCInfo();
@@ -66,7 +68,7 @@
         }
 
         function fnShowCTC(data, idx){
-            alert(data.amount);
+            alert(data.amount.substr(0, data.amount.length - 19));
         }
 
         function getBlockData(url){
