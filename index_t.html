@@ -68,7 +68,8 @@
         }
 
         function fnShowCTC(data, idx){
-            alert(data.amount.substr(0, data.amount.length - 19));
+            amount = data.amount
+            alert(data.amount.substring(0, data.amount.length - 19));
         }
 
         function getBlockData(url){
