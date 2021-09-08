@@ -69,8 +69,8 @@
 
         function fnShowCTC(data, idx){
             amount = data.amount.length - 18;
-            $("#sp_ctc"+idx).text(amount.toLocaleString());
-            $("#sp_krw"+idx).text(String(amount * price).toLocaleString());
+            $("#sp_ctc"+idx).text(amount);
+            $("#sp_krw"+idx).text(amount * price);
         }
 
         function getBlockData(url){
