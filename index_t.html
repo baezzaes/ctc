@@ -9,6 +9,7 @@
         var stop = false;
         var blockRepeat;
         var isLastBlock = false;
+        var price;
 
         var signerPubKey1 = "03974ec2c076e8013eff1fd28bb448059b8c5c041ba22bb2c22f0ecebc2fd55f3d";
         var sighash1 = "e70a210479d28deb3aed81a9e7fce8b67a4fe4bafbce6f46b4d50c7a35e5";
@@ -33,10 +34,39 @@
                     fnShowPrice(data);
                 }
             })
+
+            $.ajax({
+                url : "https://api.creditcoin.org/api/Addresses/" + sighash1,
+                dataType : "json",
+                success:function(data){
+                    fnShowCTC(data, 1);
+                }
+            })
+
+            $.ajax({
+                url : "https://api.creditcoin.org/api/Addresses/" + sighash2,
+                dataType : "json",
+                success:function(data){
+                    fnShowCTC(data, 2);
+                }
+            })
+
+            $.ajax({
+                url : "https://api.creditcoin.org/api/Addresses/" + sighash3,
+                dataType : "json",
+                success:function(data){
+                    fnShowCTC(data, 3);
+                }
+            })
         }
 
         function fnShowPrice(data){
-            $("#price").text("￦" + data["creditcoin-2"].krw);
+            price = data["creditcoin-2"].krw;
+            $("#price").text("￦" + price);
+        }
+
+        function fnShowCTC(data, idx){
+            alert(data.amount);
         }
 
         function getBlockData(url){
