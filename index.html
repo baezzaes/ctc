@@ -36,6 +36,11 @@
                     fnShowPrice(data);
                 }
             })
+        }
+
+        function fnShowPrice(data){
+            price = data["creditcoin-2"].krw;
+            $("#price").text("￦" + price.toLocaleString());
 
             $.ajax({
                 url : "https://api.creditcoin.org/api/Addresses/" + sighash1,
@@ -60,11 +65,6 @@
                     fnShowCTC(data, 3);
                 }
             })
-        }
-
-        function fnShowPrice(data){
-            price = data["creditcoin-2"].krw;
-            $("#price").text("￦" + price.toLocaleString());
         }
 
         function fnShowCTC(data, idx){
